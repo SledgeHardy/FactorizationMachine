@@ -63,6 +63,7 @@ After successfully processing the following image
 ![Original](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png)
 
 You should see an output of the following images
+
 **Corrupted**
 
 ![Corrupted](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrupt.png)
