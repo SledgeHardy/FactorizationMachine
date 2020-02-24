@@ -18,7 +18,7 @@ library(png)
 library(colorspace)
 
 #Set working directory and source functions
-setwd("C:\\Mine\\Presentation\\FactorizationMachines\\RFMImages\\")
+setwd("C:\\<my_factorization_dir>\\")
 source("functions.R")
 
 #Set parameters
