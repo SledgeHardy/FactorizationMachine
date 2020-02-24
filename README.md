@@ -18,7 +18,7 @@ K is another parameter that impacts performance as this determines the width and
 The higher the count, the finer the detail that can be captured from the image.
 
 Execute the script and you should seen an output similar to that of below:
-*
+
 [1] "Init  10  cpu/s..."
 [1] "Loading data..."
 [1] "Corrupting data..."
@@ -38,4 +38,14 @@ Execute the script and you should seen an output similar to that of below:
 [1] "Stop the cluster..."
 [1] "Done."
 [1] 0
-*
+
+After successfully processing the following image
+![GitHub Logo](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png)
+
+You should see an output of the following images
+**Corrupted**
+![GitHub Logo](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrupt.png)
+**Synthetic**
+![GitHub Logo](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_fact.png)
+**Corrected**
+![GitHub Logo](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrected.png)
