@@ -58,12 +58,17 @@ Execute the script and you should seen an output similar to that of below:
 [1] 0
 
 After successfully processing the following image
-![GitHub Logo](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png)
+![Original](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png)
 
 You should see an output of the following images
 **Corrupted**
-![GitHub Logo](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrupt.png)
+
+![Corrupted](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrupt.png)
+
 **Synthetic**
-![GitHub Logo](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_fact.png)
+
+![Synthetic](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_fact.png)
+
 **Corrected**
-![GitHub Logo](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrected.png)
+
+![Corrected](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrected.png)
