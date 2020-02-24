@@ -7,6 +7,7 @@ This particular project is an implementation of the same algorithm but in R with
 Special thanks to Albert Au Yeung, a very smart computer scienctist and machine learning engineer, for writing a tutorial on matrix factorization years ago. The tutorial involved the imputation of a MxN matrix and in python. I had a look at his tutorial after reading the math in trying to understand how Funk MF worked and found his work. Here, I began to transpose the code into R. 
 
 **Execution**
+
 Copy the files into a folder, set the parameters of imageFactorization.R to what you require along with the image folder name.
 Parameters BLOCKX and BLOCKY determine the x and y dimensions of the size of the blocks you divide your image into.
 Therefore, choose values that where your x and y image dimensions are divided, there are no remainders - factors of x and y.
