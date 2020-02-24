@@ -15,7 +15,7 @@ Example, 100x100 image can be divided by 5,10,20,50,100 for x or y. The x and y 
 The smaller the blocks, the more sub matrices that can be farmed off to your cpus to process in parallel.
 Smaller blocks lead to faster performance but image results degrade in a non linear manner at a very small size.
 
-K is another parameter that impacts performance as this determines the width and high of matrices X and Y (P and Q)
+K is another parameter that impacts performance as this determines the width and high of matrices X and Y (Q and P)
 The higher the count, the finer the detail that can be captured from the image.
 
 Execute the script and you should seen an output similar to that of below:
