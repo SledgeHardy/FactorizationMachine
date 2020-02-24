@@ -234,7 +234,7 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
     }
   
     print("..start imputing pixels back into our corrupted image...")
-    #Imput every 3rd pixel unless global processing is set to 1
+    #Iput every 3rd pixel unless global processing is set to 1
     samplecount <- 0
     imageDataCorrected <- imageMatrix
     for (i in 1:nrow(imageDataCorrected)) {
