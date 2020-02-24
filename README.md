@@ -64,11 +64,11 @@ After successfully processing the following image
 
 You should see an output of the following images
 
-**Corrupted**
+**Corrupted at 33%**
 
 ![Corrupted](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrupt.png)
 
-**Synthetic**
+**Synthetic - 400 steps, .02 learning rate, k=20**
 
 ![Synthetic](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_fact.png)
 
