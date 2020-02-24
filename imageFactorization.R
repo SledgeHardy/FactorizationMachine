@@ -38,7 +38,8 @@ setting_step <- 50
 setting_rate <- .02           
 #More factors captures more details but will lead to longer processing times
 setting_factors <- 5         
-#Initilize P and Q with these coefficients - values too large yields overflow errors
+#Initilize P and Q with these uniform coefficients - values too large yields overflow errors. 
+#a and b in uniform distribution.
 setting_a <- .01              
 setting_b <- .3               
 #% of pixel corruption in image
