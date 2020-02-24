@@ -27,7 +27,7 @@ setting_image_directory <- "C:\\<my_factorization_dir>\\"
 #Image name - use png (color or black and white)
 setting_image <- "<my_image_name>.png"     
 #How big do you want your sub matrices to be - smaller runs faster, x set to image x size, will run slower
-#and will serialize your processing. x devided by blockx must must equal zero
+#and will serialize your processing. x divided by blockx must equal zero
 #My image is a black and white png at 600x370 pixels
 setting_blockx <- 60          
 #Same as above but for Y axis
