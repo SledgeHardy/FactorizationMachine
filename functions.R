@@ -8,8 +8,7 @@ corruptImage <- function(p_imageData,p_corruption) {
   print("Corrupting data...")
   for (i in 1:dim(p_imageData)[1]) {
     for (j in 1:dim(p_imageData)[2]) {
-      if (runif(1,0,1) < (p_corruption)) 
-      {
+      if (runif(1,0,1) < (p_corruption)) {
       p_imageData[i,j] <- 0
       }
     }
@@ -22,17 +21,16 @@ MeanPixel <- function(pixelMatrix) {
   print("Smoothing outlier pixels...")
   for(i in 1:nrow(pixelMatrix)) { 
     for(j in 1:ncol(pixelMatrix)) {
-      
-	  #Any outlying pixels beyond 1 or below 0 are smoothed out
-      if (pixelMatrix[i,j] > 1 || pixelMatrix[i,j] < 0)
-      {
-	    #Select 4 surrounding pixel coordinates
+
+      #Any outlying pixels beyond 1 or below 0 are smoothed out
+      if (pixelMatrix[i,j] > 1 || pixelMatrix[i,j] < 0) {
+	#Select 4 surrounding pixel coordinates
         pix1 <- c(i-1,j)
         pix2 <- c(i,j-1)
         pix3 <- c(i+1,j)
         pix4 <- c(i,j+1)
       
-	    #If the pixel is on a margin, move it within bounds
+	#If the pixel is on a margin, move it within bounds
         pix1[1] <- ifelse(pix1[1]<1,1,pix1[1])
         pix2[2] <- ifelse(pix2[2]<1,1,pix2[2])
         pix3[1] <- ifelse(pix3[1]>nrow(pixelMatrix),nrow(pixelMatrix),pix3[1])
@@ -47,7 +45,6 @@ MeanPixel <- function(pixelMatrix) {
       }
     }
   }
-
   return(pixelMatrix)
 }
 
@@ -83,7 +80,7 @@ matrix_factorization <- function(R, K, steps, p_inita, p_initb, alpha, beta) {
         if ( R[i,j] > 0) {
 
           #Compute the synthetic pixel and the error 
-		  #(difference between real pixel and synthetic pixel)
+          #(difference between real pixel and synthetic pixel)
           spixel <- Y[i,] %*% X[,j]
           eij <- (R[i,j] - spixel)
 
@@ -113,7 +110,7 @@ matrix_factorization <- function(R, K, steps, p_inita, p_initb, alpha, beta) {
       if (!is.na(e)) {
         if(e< 0.001) {
           break
-          }
+        }
       }
     }
   }
@@ -121,7 +118,7 @@ matrix_factorization <- function(R, K, steps, p_inita, p_initb, alpha, beta) {
   return (as.matrix(as.data.frame(Y)) %*% as.matrix(as.data.frame(X)))
 }
 
-#The god wrapper function, takes in all the parameters needed to restore a corrupted image. Descriptions in imageFactorization.R
+#The main function, takes in all the parameters needed to restore a corrupted image. Descriptions in imageFactorization.R
 CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_rate,p_factor,p_inita,p_initb,p_corruption,p_cpu) {
   
   print(paste("Init ",p_cpu," cpu/s..."))
@@ -144,14 +141,13 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
   #Results fed back into algorithm for g passes
   print(paste("Begin main loop..."))
   globalLoop <- 1
-  for (g in 1:globalLoop)
-  {
+  for (g in 1:globalLoop) {
     #initialise values
     ArrayList <- list()
     imageSyntheticCombined <- NULL
     mCount <- 0
 	
-	#If we're doing our first pass, intialise imageMatrix
+    #If we're doing our first pass, intialise imageMatrix
     if (g==1) {
       imageMatrix <- as.matrix(imageDataCorrupt)
     }
@@ -163,13 +159,13 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
     msize <- dim(t(imageDataCorrupt))[2]/(p_blocky)
     nsize <- dim(t(imageDataCorrupt))[1]/(p_blockx)
     
-	#Get the image size (t is for transpose, the image is on its side in matrix form)
+    #Get the image size (t is for transpose, the image is on its side in matrix form)
     m <- dim(t(imageDataCorrupt))[2]
     n <- dim(t(imageDataCorrupt))[1]
     
-	#If we're dividing our image into sub matrices - proceed to cut image up for processing
+    #If we're dividing our image into sub matrices - proceed to cut image up for processing
     if (msize > 1) {
-	  print(paste("Dividing image..."))  
+      print(paste("..Dividing image..."))  
       for (m in 1:msize) {
         for (n in 1:nsize) {
           mCount <- mCount+1
@@ -181,33 +177,30 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
         }
       }
     }
-    else 
-    {
+    else {
       ArrayList[[1]] <- imageMatrix[1:dim(imageDataCorrupt)[2],1:dim(imageDataCorrupt)[1]]
     }
   
     #Farm out sub matrices from image to each CPU core in p_cpu
-	print("Sending off workload to CPUs, tail -f -n 100 cluster.txt")
-	print("in your image directory to monitor. No feedback in R...")
+    print("....Sending off workload to CPUs, tail -f -n 100 cluster.txt")
+    print("....in your image directory to monitor. No feedback in R...")
     imageSyntheticList <- parSapply(cl=cl,ArrayList,p_factor,p_step,p_inita,p_initb,p_rate,.001,FUN = matrix_factorization, simplify=F)
 
-
-    print("Threading the matrices back together again. Minor adjustments if outlier pixels found...")
+    print("..Threading the matrices back together again. Minor adjustments if outlier pixels found...")
     for (x in 1:length(imageSyntheticList)) {
-
       #if the pixel has a nan, replace with surrounding pixels
-      if ( is.nan(max(imageSyntheticList[[x]])) == T)
-	  {
+      if ( is.nan(max(imageSyntheticList[[x]])) == T) {
         imageSyntheticList[[x]] <- MeanPixel(imageSyntheticList[[x]])
         imageSyntheticList[[x]] <- ifelse(imageSyntheticList[[x]]>1,.96,imageSyntheticList[[x]])
-	  }
+      }
 
       #if the pixel has value > 1 (bright), smooth with mean
       if (max(imageSyntheticList[[x]]) >= 1) {
         imageSyntheticList[[x]] <- MeanPixel(imageSyntheticList[[x]])
         imageSyntheticList[[x]] <- ifelse(imageSyntheticList[[x]]>1,.96,imageSyntheticList[[x]])
       }
-	  #if the pixel has value < 0 (dark), smooth with mean
+
+      #if the pixel has value < 0 (dark), smooth with mean
       if (min(imageSyntheticList[[x]]) <= 0) {
         imageSyntheticList[[x]] <- MeanPixel(imageSyntheticList[[x]])
         imageSyntheticList[[x]] <- ifelse(imageSyntheticList[[x]]<0,.01,imageSyntheticList[[x]])
@@ -216,48 +209,41 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
     }
 
     #Start to merge the synthetic arrays back together after processing
-	#merge by columns and by row
+    #merge by columns and by row
     mCount <- 1
     for (m in 1:msize) {
       imageSynthetic <- NULL
-	  
-	  #First load matrices horizontally
-      for (n in 1:nsize)
-      {
+      #First load matrices horizontally
+      for (n in 1:nsize) {
         if (is.null(imageSynthetic)) {
           imageSynthetic <- imageSyntheticList[[mCount]]
         }
-        else
-        {
+        else {
           imageSynthetic <- cbind(imageSynthetic,imageSyntheticList[[mCount]])   
         }
         mCount <- mCount+1
       }
-	  #Then we append the horizontally bound matrices onto a row
+
+      #Then we append the horizontally bound matrices onto a row
       if (is.null(imageSyntheticCombined)) {
         imageSyntheticCombined <- imageSynthetic
       }
-      else
-      {
+      else {
         imageSyntheticCombined <- rbind(imageSyntheticCombined,imageSynthetic)   
       }
- 
     }
   
-    print("start imputing pixels back into our corrupted image...")
-	#Imput every 3rd pixel unless global processing is set to 1
-	samplecount <- 0
+    print("..start imputing pixels back into our corrupted image...")
+    #Imput every 3rd pixel unless global processing is set to 1
+    samplecount <- 0
     imageDataCorrected <- imageMatrix
-    for (i in 1:nrow(imageDataCorrected))
-    {
-      for (j in 1:ncol(imageDataCorrected))
-      {
-        if(imageDataCorrected[i,j] == 0)
-        {
+    for (i in 1:nrow(imageDataCorrected)) {
+      for (j in 1:ncol(imageDataCorrected)) {
+        if(imageDataCorrected[i,j] == 0) {
           if (samplecount >= 3 || g==globalLoop) {
             imageDataCorrected[i,j] <-  imageSyntheticCombined[i,j]
             samplecount <- 0
-            }
+          }
           samplecount <- samplecount+1
         }
       }
@@ -267,19 +253,19 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
     par(mar=c(1,1,1,1))
     par(mfrow=c(1,3))
     
-	print("Plot images for comparison...")
+    print("..plot images for comparison...")
     image(t(apply(imageDataCorrupt, 2, rev)),col=grey(seq(0, 1, length = 256)))
     image(t(apply(imageSyntheticCombined, 2, rev)),col=grey(seq(0, 1, length = 256)))
     image(t(apply(imageDataCorrected, 2, rev)),col=grey(seq(0, 1, length = 256)))
 
-    print("Write each image to disk at original resolution...")
+    print("..write each image to disk at original resolution...")
     par(mfrow=c(1,1))
 
     #Corrupted
     png(filename=paste0(setting_image_directory,p_image,"",g,"_",p_image,"_",p_blocky,"_",p_rate,"_",p_step,"_",p_factor,"_corrupt.png"),width=dim(imageDataCorrupt)[2]+70*2,height=dim(imageDataCorrupt)[1]+70*2,units="px")
     image(t(apply(imageDataCorrupt, 2, rev)),col=grey(seq(min(imageDataCorrupt), max(imageDataCorrupt), length = 256)))
     dev.off()
-	
+
     #Synthetic
     png(filename=paste0(setting_image_directory,p_image,"",g,"_",p_image,"_",p_blocky,"_",p_rate,"_",p_step,"_",p_factor,"_fact.png"),width=dim(imageDataCorrupt)[2]+70*2,height=dim(imageDataCorrupt)[1]+70*2,units="px")
     image(t(apply(imageSyntheticCombined, 2, rev)),col=grey(seq(min(imageSyntheticCombined), max(imageSyntheticCombined), length = 256)))
@@ -291,8 +277,8 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
     dev.off()
   }
 
-  print("Stop the cluster...")
+  print("stop the cluster...")
   stopCluster(cl)
-  print("Done.")
+  print("done.")
   return (0)
 }
