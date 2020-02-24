@@ -57,4 +57,4 @@ CorrectImage(setting_image_directory
             ,setting_a
             ,setting_b
             ,setting_corruption
-			,setting_cpu)
+            ,setting_cpu)
