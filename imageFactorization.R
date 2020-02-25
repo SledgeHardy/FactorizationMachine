@@ -16,16 +16,17 @@
 library(parallel)
 library(png)
 library(colorspace)
+library(here)
 
-#Set working directory and source functions
-setwd("C:\\<my_factorization_dir>\\")
-source("functions.R")
+source(here("functions.R"))
 
 #Set parameters
 #Set you image directory
-setting_image_directory <- "C:\\<my_factorization_dir>\\"
+setting_image_directory <- here()
+
 #Image name - use png (color or black and white)
-setting_image <- "<my_image_name>.png"     
+setting_image <- "14.png1_14.png_37_0.02_400_20_corrupt.png"
+
 #How big do you want your sub matrices to be - smaller runs faster, x set to image x size, will run slower
 #and will serialize your processing. x divided by blockx must equal zero
 #My image is a black and white png at 600x370 pixels
