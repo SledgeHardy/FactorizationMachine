@@ -124,11 +124,11 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
   
   print(paste("Init ",p_cpu," cpu/s..."))
   #Configure CPU cluster, write output to cluster.txt where the image resides
-  cl <- makeCluster(p_cpu,outfile = paste0(p_image_directory,"cluster.txt"))
+  cl <- makeCluster(p_cpu,outfile = file.path(p_image_directory, "cluster.txt"))
   
   print(paste("Loading data..."))
   #read image and use only first png dimension
-  imageData <- readPNG(paste0(p_image_directory,p_image))
+  imageData <- readPNG(file.path(p_image_directory,p_image))
   imageData <- imageData[,,1]
   
   #Corrupt the image
