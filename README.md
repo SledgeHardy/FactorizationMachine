@@ -23,43 +23,25 @@ The higher the count, the finer the detail that can be captured from the image.
 
 Execute the script and you should seen an output similar to that of below:
 
-[1] "Init  10  cpu/s..."
-
-[1] "Loading data..."
-
-[1] "Corrupting data..."
-
-[1] "Plotting corrupted image..."
-
-[1] "Begin main loop..."
-
-[1] "..Dividing image..."
-
-[1] "....Sending off workload to CPUs, tail -f -n 100 cluster.txt"
-
-[1] "....in your image directory to monitor. No feedback in R..."
-
-[1] "Smoothing outlier pixels..."
-
-[1] "Smoothing outlier pixels..."
-
-.........................
-
-[1] "Smoothing outlier pixels..."
-
-[1] "Smoothing outlier pixels..."
-
-[1] "..start imputing pixels back into our corrupted image..."
-
-[1] "..Plot images for comparison..."
-
-[1] "..Write each image to disk at original resolution..."
-
-[1] "Stop the cluster..."
-
-[1] "Done."
-
-[1] 0
+`[1] "Init  10  cpu/s..."`
+`[1] "Loading data..."`
+`[1] "Corrupting data..."`
+`[1] "Plotting corrupted image..."`
+`[1] "Begin main loop..."`
+`[1] "..Dividing image..."`
+`[1] "....Sending off workload to CPUs, tail -f -n 100 cluster.txt"`
+`[1] "....in your image directory to monitor. No feedback in R..."`
+`[1] "Smoothing outlier pixels..."`
+`[1] "Smoothing outlier pixels..."`
+`.........................`
+`[1] "Smoothing outlier pixels..."`
+`[1] "Smoothing outlier pixels..."`
+`[1] "..start imputing pixels back into our corrupted image..."`
+`[1] "..Plot images for comparison..."`
+`[1] "..Write each image to disk at original resolution..."`
+`[1] "Stop the cluster..."`
+`[1] "Done."`
+`[1] 0`
 
 After successfully processing the following image
 
