@@ -4,7 +4,9 @@
 Factorization machines are an approach to infer missing data using a loss function (with gradient descent) across the product of 2 different matrices. It is an approach popularized by Simon Funk in 2006 owing to his efforts on the Netflix recommendation prize. The aim of Funk MF is to minimize the error between a synthetic matrix, derived from 2 matrices, and the real data. This is done through the initialized coefficients stored in 2 matrices. Practical uses include restoring image corruption and generating recommendations or suggestions to users based on x and y pairs.
 
 This particular project is an implementation of the same algorithm but in R with a focus on image restoration.
-Special thanks to Albert Au Yeung, a very smart computer scientist and machine learning engineer, for writing a tutorial on matrix factorization years ago. The tutorial involved the imputation of a MxN matrix and in python. I had a look at his tutorial after reading the math in trying to understand how Funk MF worked and found his work. Here, I began to transpose the code into R. 
+Special thanks to Albert Au Yeung, a very smart computer scientist and machine learning engineer, for writing a tutorial on matrix factorization years ago. The tutorial involved the imputation of a MxN matrix and in python. After reading the wiki math, I had a look at his tutorial in trying to understand how Funk MF worked and found his post. Here, I began to transpose the code into R. 
+His tutorial can be found here:
+http://albertauyeung.com/2017/04/23/python-matrix-factorization/
 
 **Execution**
 
