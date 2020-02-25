@@ -9,8 +9,7 @@ His tutorial can be found here:
 
 http://albertauyeung.com/2017/04/23/python-matrix-factorization/
 
-**Execution**
-
+**Execution**<br>
 Copy the files into a folder, set the parameters of imageFactorization.R to what you require along with the image folder name.
 Parameters BLOCKX and BLOCKY determine the x and y dimensions of the size of the blocks you divide your image into.
 Therefore, choose values that where your x and y image dimensions are divided, there are no remainders - factors of x and y.
@@ -42,21 +41,18 @@ Execute the script and you should seen an output similar to that of below:
 `[1] "Stop the cluster..."`<br/>
 `[1] "Done."`<br/>
 `[1] 0`<br/>
-
-After successfully processing the following image
-
-![Original](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png)
-
-You should see an output of the following images
-
-**Corrupted at 33%**
-
+<br>
+After successfully processing the following image<br>
+<br>
+![Original](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png)<br>
+<br>
+You should see an output of the following images<br>
+<br>
+**Corrupted at 33%**<br>
 ![Corrupted](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrupt.png)
 
-**Synthetic - 400 steps, .02 learning rate, k=20**
-
+**Synthetic - 400 steps, .02 learning rate, k=20**<br>
 ![Synthetic](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_fact.png)
 
-**Corrected**
-
+**Corrected**<br>
 ![Corrected](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrected.png)
