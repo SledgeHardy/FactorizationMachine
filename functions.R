@@ -1,5 +1,6 @@
 # Demonstration of Funk MF on images
 # Core factorization transposed from python tutorial (written by Albert Au Yeung) into R. 
+# This core code can be found here: http://albertauyeung.com/2017/04/23/python-matrix-factorization/
 # Variable name adjustments made for programmers. Additional QOL adjustments made.
 # All additional functionality (image handling, parallelism, ect) added by Ray Bosman
 
