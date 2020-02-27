@@ -1,5 +1,6 @@
 # Demonstration of Funk MF on images
-# Core factorization transposed from python tutorial (written by Albert Au Yeung) into R. 
+# Gradient descent and loop structure in matrix_factorization transposed from python tutorial (written by Albert Au Yeung) into R. 
+# This core code can be found here: http://albertauyeung.com/2017/04/23/python-matrix-factorization/
 # Variable name adjustments made for programmers. Additional QOL adjustments made.
 # All additional functionality (image handling, parallelism) added by Ray Bosman
 
@@ -22,10 +23,10 @@ source(here("functions.R"))
 
 #Set parameters
 #Set you image directory
-setting_image_directory <- here()
+setting_image_directory <- paste0(here(),"/images/")
 
 #Image name - use png (color or black and white)
-setting_image <- "14.png1_14.png_37_0.02_400_20_corrupt.png"
+setting_image <- "14.png"
 
 #How big do you want your sub matrices to be - smaller runs faster, x set to image x size, will run slower
 #and will serialize your processing. x divided by blockx must equal zero
