@@ -60,7 +60,7 @@ You should see an output of the following images<br>
 
 
 
-**Original Python Function - Kudos to Albert Au Yeung**
+**Original Python Function**<br/>
 `"""`<br/>
 `@INPUT:`<br/>
 `    R     : a matrix to be factorized, dimension N x M`<br/>
