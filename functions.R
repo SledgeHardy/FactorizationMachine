@@ -1,5 +1,5 @@
 # Demonstration of Funk MF on images
-# Core factorization transposed from python tutorial (written by Albert Au Yeung) into R. 
+# Gradient descent and loop structure in matrix_factorization transposed from python tutorial (written by Albert Au Yeung) into R. 
 # This core code can be found here: http://albertauyeung.com/2017/04/23/python-matrix-factorization/
 # Variable name adjustments made for programmers. Additional QOL adjustments made.
 # All additional functionality (image handling, parallelism, ect) added by Ray Bosman
@@ -124,7 +124,7 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
   
   print(paste("Init ",p_cpu," cpu/s..."))
   #Configure CPU cluster, write output to cluster.txt where the image resides
-  cl <- makeCluster(p_cpu,outfile = file.path(p_image_directory, "cluster.txt"))
+  cl <- makeCluster(p_cpu,outfile = file.path(here(), "/cluster.txt"))
   
   print(paste("Loading data..."))
   #read image and use only first png dimension
