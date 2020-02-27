@@ -56,3 +56,45 @@ You should see an output of the following images<br>
 
 **Corrected**<br>
 ![Corrected](https://github.com/RayBosman/FactorizationMachine/blob/master/14.png1_14.png_37_0.02_400_20_corrected.png)
+
+
+
+
+**Original Python Function - Kudos to Albert Au Yeung**
+'"""'<br/>
+'@INPUT:'<br/>
+'    R     : a matrix to be factorized, dimension N x M'<br/>
+'    P     : an initial matrix of dimension N x K'<br/>
+'    Q     : an initial matrix of dimension M x K'<br/>
+'    K     : the number of latent features'<br/>
+'    steps : the maximum number of steps to perform the optimisation'<br/>'<br/>
+'    alpha : the learning rate'<br/>
+'    beta  : the regularization parameter'<br/>
+'@OUTPUT:'<br/>
+'    the final matrices P and Q'<br/>
+'"""'<br/>
+'def matrix_factorization(R, P, Q, K, steps=5000, alpha=0.0002, beta=0.02):'<br/>
+'    Q = Q.T'<br/>
+'    for step in range(steps):'<br/>
+'        for i in range(len(R)):'<br/>
+'            for j in range(len(R[i])):'<br/>
+'                if R[i][j] > 0:'<br/>
+'                    eij = R[i][j] - numpy.dot(P[i,:],Q[:,j])'<br/>
+'                    for k in range(K):'<br/>
+'                        P[i][k] = P[i][k] + alpha * (2 * eij * Q[k][j] - beta * P[i][k])'<br/>
+'                        Q[k][j] = Q[k][j] + alpha * (2 * eij * P[i][k] - beta * Q[k][j])'<br/>
+'                        print(i)'<br/>
+'                        print(j)'<br/>
+'                if R[i][j] <= 0:'<br/>                      
+'                    print("Zero")'<br/>
+'        eR = numpy.dot(P,Q)'<br/>
+'        e = 0'<br/>
+'        for i in range(len(R)):'<br/>
+'            for j in range(len(R[i])):'<br/>
+'                if R[i][j] > 0:'<br/>
+'                    e = e + pow(R[i][j] - numpy.dot(P[i,:],Q[:,j]), 2)'<br/>
+'                    for k in range(K):'<br/>
+'                        e = e + (beta/2) * ( pow(P[i][k],2) + pow(Q[k][j],2) )'<br/>
+'        if e < 0.001:'<br/>
+'            break'<br/>
+'    return P, Q.T'
