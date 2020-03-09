@@ -179,7 +179,7 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
       }
     }
     else {
-      ArrayList[[1]] <- imageMatrix[1:dim(imageDataCorrupt)[2],1:dim(imageDataCorrupt)[1]]
+      ArrayList[[1]] <- imageMatrix[1:dim(imageDataCorrupt)[1],1:dim(imageDataCorrupt)[2]]
     }
   
     #Farm out sub matrices from image to each CPU core in p_cpu
