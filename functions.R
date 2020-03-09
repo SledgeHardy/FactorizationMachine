@@ -179,6 +179,7 @@ CorrectImage <- function(p_image_directory,p_image,p_blockx,p_blocky,p_step,p_ra
       }
     }
     else {
+      #Process entire image as one matrix
       ArrayList[[1]] <- imageMatrix[1:dim(imageDataCorrupt)[1],1:dim(imageDataCorrupt)[2]]
     }
   
